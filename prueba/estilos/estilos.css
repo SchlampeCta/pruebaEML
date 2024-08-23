@@ -1,0 +1,166 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: white;
+}
+
+h1{
+    text-align: center;
+    
+}
+
+header{
+    padding: 5px;
+    margin-top: 5px;
+    background-color:#BDC8E0;
+    font-size: 35 px;
+    font-weight: lighter;
+}
+
+/* Estilo primerFormulario*/
+.primerFormulario {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* h2 del formulario */
+.primerFormulario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo para el formulario dentro del contenedor */
+.primerFormulario form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo label del formulario */
+.primerFormulario form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo input del formulario */
+.primerFormulario form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo botón */
+.primerFormulario form input[type="button"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.primerFormulario form input[type="button"]:hover {
+    background-color: #218838;
+}
+
+/*Estilos segundoFormulario*/
+/*.segundoFormulario{
+
+}
+
+/* Estilo para el título */
+.segundoFormulario h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo para la sección lateral (sidebar) */
+#sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Estilo para el formulario dentro del sidebar */
+#sidebar form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para las etiquetas del formulario */
+#sidebar form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo input formulario */
+#sidebar form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilo para el botón */
+#sidebar form input[type="button"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#sidebar form input[type="button"]:hover {
+    background-color: #0056b3;
+    
+}
+
+/*Estilo tabla/lista*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el pie de página */
+footer {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #1b1a1a;
+    padding: 1em;
+    text-align: center;
+    clear: both;
+}

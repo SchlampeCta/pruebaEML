@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Fecha de Registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-usuarios">
+            <!-- Los datos se llenarán aquí con JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Función para cargar los datos de la base de datos
+        async function cargarUsuarios() {
+            const response = await fetch('/api/usuarios'); // Llama a la API que devuelve los usuarios
+            const usuarios = await response.json();
+
+            const tabla = document.getElementById('tabla-usuarios');
+            tabla.innerHTML = ''; // Limpia la tabla antes de llenarla nuevamente
+
+            usuarios.forEach(usuario => {
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${usuario.id}</td>
+                    <td><input type="text" value="${usuario.nombre}" id="nombre-${usuario.id}"></td>
+                    <td><input type="email" value="${usuario.email}" id="email-${usuario.id}"></td>
+                    <td><input type="text" value="${usuario.telefono}" id="telefono-${usuario.id}"></td>
+                    <td>${usuario.fecha_registro}</td>
+                    <td>
+                        <button onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button onclick="eliminarUsuario(${usuario.id})">Eliminar</button>
+                    </td>
+                `;
+                tabla.appendChild(fila);
+            });
+        }
+
+        // Función para editar un usuario
+        async function editarUsuario(id) {
+            const nombre = document.getElementById(`nombre-${id}`).value;
+            const email = document.getElementById(`email-${id}`).value;
+            const telefono = document.getElementById(`telefono-${id}`).value;
+
+            await fetch(`/api/usuarios/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre, email, telefono })
+            });
+
+            alert('Usuario actualizado');
+            cargarUsuarios(); // Recargar la tabla después de la actualización
+        }
+
+        // Función para eliminar un usuario
+        async function eliminarUsuario(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+                await fetch(`/api/usuarios/${id}`, {
+                    method: 'DELETE'
+                });
+                alert('Usuario eliminado');
+                cargarUsuarios(); // Recargar la tabla después de la eliminación
+            }
+        }
+
+        // Cargar usuarios al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarUsuarios);
+    </script>
+</body>
+
+</html>

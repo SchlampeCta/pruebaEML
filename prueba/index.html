@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario CRUD</title>
+    <link rel="stylesheet" href="/var/www/html/prueba/estilos/estilos.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<body>
+    <h1>Prueba de formularios</h1>
+
+    <!-- Contenido de la página -->
+    <header class="cabecera">
+        <section class="contendedor">
+            <img class="logo" src="/var/www/html/prueba/img/logo.png" alt="Logo"> 
+        </section>
+    </header>
+
+    <div class="primerFormulario">
+        <h2>Ingresar usuarios nuevos</h2>
+        <!-- Formulario crear nuevos usuarios-->
+        <form method="POST" action="/var/www/html/prueba/db/insertar.php">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" required>
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+            <label for="correo">Correo:</label>
+            <input type="text" id="correo" name="correo" required>
+            <input type="submit" value="Guardar registro">
+        </form>
+    </div>
+
+    <div class="segundoFormulario">
+        <h3>Gestionar usuarios</h3>
+        <!-- Sección lateral -->
+        <aside id="sidebar">
+            <!-- Formulario para editar-->
+            <form>
+                <label for="ID">ID</label>
+                <input type="text" id="ID" name="ID" disabled>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono">
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" name="correo">
+                <label for="fecha_registro">Fecha de registro</label>
+                <input type="text" id="fecha_registro" name="fecha_registro" disabled>
+                <label for="fecha_ultima_modificacion">Fecha última modificación</label>
+                <input type="text" id="fecha_ultima_modificacion" name="fecha_ultima_modificacion" disabled>
+                <input type="submit" value="Editar"> <!-- Cambiado de button a submit -->
+            </form>
+        </aside>
+    </div>
+
+    <h3>Lista de usuarios</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Fecha de registro</th>
+                <th>Fecha última modificación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php include('/var/www/html/prueba/db/datos.php'); ?>
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            const messageType = urlParams.get('message_type');
+
+            if (message) {
+                if (messageType === 'success') {
+                    Swal.fire('Éxito', message, 'success');
+                } else if (messageType === 'error') {
+                    Swal.fire('Error', message, 'error');
+                }
+            }
+        });
+    </script>
+
+    <footer>
+        <!-- Pie de página -->
+        <p>&copy; 2024 Página de formularios</p>
+    </footer>
+</body>
+
+</html>
